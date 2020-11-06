@@ -1,0 +1,21 @@
+server:
+  port: 8081
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    hostname: localhost
+spring:
+  application:
+    name: note-service
+  devtools:
+    add-properties: false
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    
+
+
