@@ -2,7 +2,6 @@ package sys.app.onlinenotes.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,12 +24,12 @@ public class NoteController {
 	@Autowired
 	Environment env;
 	
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(consumes = "application/json", produces = "application/json")
 	public Mono<Note> createNote(@RequestBody Note note){
 		return service.createNote(note);
 	}
 	
-	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(produces = "application/json")
 	public Flux<Note> getNotes(){
 		return service.getNotes();
 	}
@@ -40,7 +39,7 @@ public class NoteController {
 		return Mono.just("Server port is :"+env.getProperty("local.server.port"));
 	}
 	
-	@GetMapping(path="/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path="/{id}",produces = "application/json")
 	public Mono<Note> getNoteById(@PathVariable String id){
 		return service.getNoteById(id);
 	}
